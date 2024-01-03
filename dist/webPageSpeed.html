@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh" class="js">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>流量杀手</title>
+        <meta name="keywords" content="IP查询,IP归属查询,在线测速,网速测试,多地IP查询,流量杀手,流量杀手网页,流量杀手在线,流量消耗器">
+        <meta name="description" content="测试您的网速，多地查询您的IP地址，同时具备网络延迟实时检测">
+        <meta http-equiv="Cache-Control" content="no-store"/>
+        <link rel="stylesheet" href="res/dashlite.css">
+        <link rel="stylesheet" href="res/style.css">
+        <link rel="shortcut icon" href="images/favicon.ico">
+        <link rel="stylesheet" href="res/layer.css" id="layuicss-layer">
+        <script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-y/echarts/5.3.0-rc.1/echarts.min.js"></script>
+    </head>
+    <body class="nk-body npc-invest bg-lighter no-touch nk-nio-theme" style="cursor:pointer">
+        <!-- wrap @s -->
+        <div class="nk-wrap ">
+            <!-- main header @s -->
+            <div class="nk-header nk-header-fluid nk-header-fixed is-light">
+                <div class="container-xl">
+                    <div class="nk-header-wrap link-between">
+                        <div class="nk-menu-trigger mr-sm-2 d-lg-none">
+                            <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="headerNav">
+                                <em class="icon ni ni-menu"></em>
+                            </a>
+                        </div>
+                        <!-- .nk-header-brand -->
+                        <div class="nk-header-tools nk-header-menu" data-content="headerNav">
+                            <div class="nk-header-mobile">
+                                <div class="nk-header-brand">
+                                    <a href="https://siriling.github.io/traffic-killer/dist" class="logo-link text-base">
+                                        <span class="nio-version" style="font-size: 21px;position: inherit;">流量杀手</span>
+                                    </a>
+                                </div>
+                                <div class="nk-menu-trigger mr-n2">
+                                    <a href="#" class="nk-nav-toggle nk-quick-nav-icon" data-target="headerNav">
+                                        <em class="icon ni ni-arrow-left"></em>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Menu -->
+                            <ul class="nk-menu nk-menu-main">
+                                <li class="nk-menu-item ">
+                                    <a href="/" class="nk-menu-link nk-ibx-action-item" data-original-title="" title="">
+                                        <em class="icon ni ni-home"></em>
+                                        <span class="nk-menu-text">首页</span>
+                                    </a>
+                                </li>
+                                <li class="nk-menu-item ">
+                                    <a href="webPageSpeed.html" class="nk-menu-link nk-ibx-action-item" data-original-title="" title="">
+                                        <em class="icon ni ni-heart"></em>
+                                        <span class="nk-menu-text">网页打开速度</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- .nk-header-menu -->
+                        <div class="no-gutters">
+                            <ul class="nk-quick-nav">
+                                <li class="dropdown">
+                                    <a href="javascript:;" class="progress-rating dark-switch ">
+                                        <span class="nk-menu-icon">
+                                            <em class="icon ni ni-moon"></em>
+                                            <em class="icon ni ni-sun d-none"></em>
+                                        </span>
+                                    </a>
+                                </li>
+                                <!-- .dropdown -->
+                            </ul>
+                            <!-- .nk-quick-nav -->
+                        </div>
+                        <!-- .nk-header-tools -->
+                    </div>
+                    <!-- .nk-header-wrap -->
+                </div>
+                <!-- .container-fliud -->
+            </div>
+            <!-- main header @e -->
+            <!-- content @s -->
+            <div class="nk-content nk-content-lg nk-content-fluid">
+                <style>
+                    .stat {
+                        width: 100%;
+                        column-gap: 1rem;
+                        padding: 1rem 1.5rem;
+                    }
+
+                    .stat-title {
+                        white-space: nowrap;
+                        opacity: .6;
+                    }
+
+                    .stat-value {
+                        white-space: nowrap;
+                        grid-column-start: 1;
+                        font-size: 1.8rem;
+                        font-weight: 700;
+                        line-height: 2.5rem
+                    }
+                </style>
+                <div id="app" class="container-xl">
+                    <div class="col-sm-12 col-md-10 col-xl-8 center-block">
+                        <div class="card card-preview">
+                            <div class="card-inner">
+                                <div class="nya-title nk-ibx-action-item progress-rating">
+                                    <em class="icon ni ni-info"></em>
+                                    <span class="nk-menu-text font-weight-bold">工具说明</span>
+                                </div>
+                                <div class="accordion-inner">
+                                    <div class="title">
+                                        <span class="dot dot-lg sq" data-bg="#9cabff" style="background: rgb(156, 171, 255);"></span>
+                                        &nbsp;<span>虽支持可自定义地址 但无法请求跨域链接</span>
+                                    </div>
+                                    <div class="title">
+                                        <span class="dot dot-lg sq" data-bg="#ffa9ce" style="background: rgb(255, 169, 206);"></span>
+                                        &nbsp;<span>速度不满意？请尝试手动切换节点，加大运行线程</span>
+                                    </div>
+                                    <div class="title">
+                                        <span class="dot dot-lg sq" data-bg="#f98c45" style="background: rgb(249, 140, 69);"></span>
+                                        &nbsp;<span>消耗机场流量，建议使用海外节点，速度可能会更快</span>
+                                    </div>
+                                    <div class="title">
+                                        <span class="dot dot-lg sq" data-bg="#b8acff" style="background: rgb(184, 172, 255);"></span>
+                                        &nbsp;<span>点击总流量板块可设置流量上限，以防止流量丢失，为你的流量保驾护航</span>
+                                    </div>
+                                    <div class="title">
+                                        <span class="dot dot-lg sq" data-bg="#8feac5" style="background: rgb(143, 234, 197);"></span>
+                                        &nbsp;<span>手机套餐内含头条系、阿里系、百度系等定向流量，填写免流量资源地址或选择对应定向包的测速节点，可消耗定向流量(非百分百准确)</span>
+                                    </div>
+                                    <div class="title">
+                                        <span class="dot dot-lg sq" data-bg="#f9db7b" style="background: rgb(249, 219, 123);"></span>
+                                        &nbsp;<span>手机端挂后台一段时间后停止运行，请让当前浏览器页面或APP保持在前台运行或锁住当前程序，避免被手机自动清理</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+<div class="card card-preview">
+    <div class="card-inner">
+        <div class="nya-title nk-ibx-action-item progress-rating">
+            <em class="icon ni ni-location"></em>
+            <span class="nk-menu-text font-weight-bold">网站测速</span>
+        </div>
+        <div class="accordion-inner">
+            <li class="nk-menu-item ">
+                <a class="text-waring">www.baidu.com</a>
+                <a class="text-waring" style="pointer-events:none;float: right;" id="web_baidu">-ms</a>
+            </li>
+        </div>
+    </div>
+</div>
+</div></div></div>
+<!-- content @d -->
+<div class="nk-footer nk-footer-fluid bg-lighter">
+    <div class="container-xl">
+        <div class="nk-footer-wrap">
+            <div class="nk-footer-copyright">
+                © 2023 <a href="https://blog.siriling.com:1212">Siriling </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- footer @e -->
+</div>
+<!-- wrap @e -->
+<audio controls id="music" loop="loop" style="display:none">
+    <source src="res/background.mp3" type="audio/mpeg">
+</audio>
+<script>
+    // 禁用双击放大(防止按加减按钮误触)
+    var lastTouchEnd = 0
+    if (!!('ontouchstart'in window || navigator.maxTouchPoints)) {
+        document.documentElement.addEventListener('touchend', function(event) {
+            var now = Date.now()
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault()
+            }
+            lastTouchEnd = now
+        }, {
+            passive: false
+        })
+    }
+
+
+
+</script>
+<!-- <script src='main.js?5'></script> -->
+<!-- <script src="js/jquery.min.js"></script> -->
+<!-- <script src="js/bootstrap.bundle.min.js"></script> -->
+<!-- <script src="js/layer.js"></script> -->
+<!-- <script src="js/nioapp.min.js"></script> -->
+<!-- <script src="js/script.js"></script> -->
+<!-- <script src="js/common.js"></script> -->
+</body></html>
+<!-- Partial test link from this https://shua.leyz.top/sl/ The website copied the data as of November 17, 2023 -->

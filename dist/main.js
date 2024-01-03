@@ -8,7 +8,7 @@ var checkIP = true
 var visibl = true
 var thread_down = []
 var lsat_all_down = 0
-var refresh_lay = 5000
+var refresh_lay = 10e3
 
 
 var now_speed = 0
@@ -160,44 +160,53 @@ var cnip = ''
 
 function ipcn() {
     if (visibl) {
+        var start_ti = new Date().getTime();
         fetch('https://forge.speedtest.cn/api/location/info', { referrerPolicy: 'no-referrer' })
             .then(response => response.json())
             .then(data => {
+                var lay = new Date().getTime() - start_ti;
+                now_local_ping = lay
                 var tag = document.getElementById("ipcn")
                 tag.innerText = data['ip'] + ' ' + data['province'] + ' ' + data['city'] + ' ' + data['distinct'] + ' ' + data['isp']
                 if (data['ip'] !== cnip) {
                     tag.style.color = ''
-                    ckip(data['ip'], tag)
+                    // ckip(data['ip'], tag)
                 }
                 cnip = data['ip'];
-            });
+                document.getElementById("laycn").innerText = lay + 'ms';
+            }).catch(error => document.getElementById("laycn").innerText = '-ms');
     }
-    setTimeout(ipcn, 5000)
+    setTimeout(ipcn, 2e3)
 }
 var gbip = ""
 
 function ipgb() {
     if (visibl) {
+        var start_ti = new Date().getTime();
         fetch('https://api-ipv4.ip.sb/geoip', { referrerPolicy: 'no-referrer' })
             .then(response => response.json())
             .then(data => {
+                var lay = new Date().getTime() - start_ti;
                 var tag = document.getElementById("ipgb")
                 tag.innerText = data['ip'] + ' ' + CountryCode_Zh_cn[data['country_code']] + ' ' + data['isp']
                 if (data['ip'] !== gbip) {
                     tag.style.color = ''
-                    ckip(data['ip'], tag)
+                    // ckip(data['ip'], tag)
                 }
                 gbip = data['ip'];
-            });
+                now_global_ping = lay
+                document.getElementById("laygb").innerText = lay + 'ms';
+            }).catch(error => document.getElementById("laygb").innerText = '-ms');
     }
-    setTimeout(ipgb, refresh_lay)
+    setTimeout(ipgb, 2e3)
 }
 
 
 function laycn() {
     if (visibl) {
         var start_ti = new Date().getTime();
-        fetch("https://connectivitycheck.platform.hicloud.com/generate_204", { method: "HEAD", cache: "no-store", mode: 'no-cors', referrerPolicy: 'no-referrer' })
+        // https://connectivitycheck.platform.hicloud.com/generate_204
+        fetch("https://baidu.com", { method: "HEAD", cache: "no-store", mode: 'no-cors', referrerPolicy: 'no-referrer' })
             .then(function() {
                 var lay = new Date().getTime() - start_ti;
                 now_local_ping = lay
@@ -211,7 +220,8 @@ function laycn() {
 function laygb() {
     if (visibl) {
         var start_ti = new Date().getTime();
-        fetch("	https://cp.cloudflare.com/", { method: "HEAD", cache: "no-store", mode: 'no-cors', referrerPolicy: 'no-referrer' })
+        // https://cp.cloudflare.com/
+        fetch("https://baidu.com", { method: "HEAD", cache: "no-store", mode: 'no-cors', referrerPolicy: 'no-referrer' })
             .then(function() {
                 var lay = new Date().getTime() - start_ti;
                 now_global_ping = lay
@@ -226,7 +236,7 @@ function ckbl() {
     if (visibl) {
         const controller = new AbortController();
         setTimeout(() => controller.abort(), 2000);
-        fetch("https://twitter.com/", { signal: controller.signal, method: "HEAD", cache: "no-store", mode: 'no-cors', referrerPolicy: 'no-referrer' })
+        fetch("https://www.baidu.com/", { signal: controller.signal, method: "HEAD", cache: "no-store", mode: 'no-cors', referrerPolicy: 'no-referrer' })
             .then(function() {
                 document.getElementById("laygb").style.color = "green";
             })
@@ -245,12 +255,16 @@ function ckip(ip, tag) {
             });
     }
 }
-
+// 获取ip by speedtest
 ipcn()
+//  获取ip by ip.sb
 ipgb()
-laycn()
-laygb()
-ckbl()
+// speedtest speed
+// laycn()
+// ip.sb speed
+// laygb()
+// 
+// ckbl()
 
 document.addEventListener("visibilitychange", function() {
     var string = document.visibilityState
